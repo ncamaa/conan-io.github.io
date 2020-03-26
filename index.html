@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<div class="home">
+<div class="home full-page-content">
 
   <div class="container">
     <div class="row justify-content-between align-items-center pt-5 pb-3">
@@ -29,10 +29,11 @@ layout: default
 
        {% if post.title != "Rust Cargo And Conan Are Friends With Benefits" %}
 
-       {% assign isEven = forloop.index | modulo:2 %}
+<!-- {% assign isEven = forloop.index | modulo:2 %} -->
+<!-- {% if isEven==0 %}pl-lg-5{% else %}pr-lg-5{% endif %} -->
 
-       <div class="col-lg-6 pb-5 pt-0 pt-lg-4 mb-lg-3">
-         <div class="single-post-list-item {% if isEven==0 %}pl-lg-5{% else %}pr-lg-5{% endif %}">
+       <div class="single-post-list-item-wrapper col-lg-6 pb-3 pt-0 pt-lg-4 mb-lg-3 {% cycle 'odd', 'even' %}">
+         <div class="single-post-list-item">
            <h2 class="pb-2 pb-lg-4">
              <a class="post-link d-block post-link-couple" id="post-{{forloop.index}}" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
            </h2>
@@ -41,9 +42,20 @@ layout: default
              <div class="post-meta pr-4 d-flex align-items-center">
                <span class="date">{{ post.date | date: "%b %-d, %Y" }}</span>
              	 <div class="dot d-block ml-2 mr-2"></div>
+               <span class="reading-time">
+                 {% assign numberOfWords = post.content | number_of_words %}
+                 {% assign readingTime = numberOfWords | divided_by: 180 %}
+                 {% assign readingTime = readingTime | plus: 1 %}
+                 {% if readingTime < 2 %}
+                 {{ readingTime }} minute read
+                 {% else %}
+                 {{ readingTime }} minutes read
+                 {% endif %}
+               </span>
              </div>
              <div class="post-share d-flex">
-               <span class="d-inline-block mr-2">Share on: </span> {% include socials.html %}
+               <span class="d-inline-block mr-2">Share on: </span>
+               {% include socials.html %}
              </div>
            </div>
 

@@ -42,9 +42,9 @@ jQuery(document).ready(function ($) {
 
 function inPagePostsMatchRowsHeight($, numberOfElementsInRow) {
   let singlePagePosts = $('.post-link-couple');
-  let postsCounter = 0;
-  let marker = 1;
-  let couple = [];
+  let postsCounter    = 0;
+  let marker          = 1;
+  let couple          = [];
 
   singlePagePosts.each(function () {
     postsCounter++;
@@ -52,6 +52,7 @@ function inPagePostsMatchRowsHeight($, numberOfElementsInRow) {
       couple.push($(this));
     }
     if (postsCounter === numberOfElementsInRow) {
+      console.log(marker);
       cMatchHeight($, couple);
       couple = [];
       marker++;

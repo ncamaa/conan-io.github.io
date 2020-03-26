@@ -3,7 +3,7 @@
   <li>
     <a
       class="mr-2"
-      href="https://twitter.com/conan_io"
+      href="https://twitter.com/intent/tweet?text={{ post.title | url_encode }} {{ site.url | url_encode }}{{ post.url | url_encode }}"
     >
       <img
         class="lazy"
@@ -16,7 +16,7 @@
   <li>
     <a
       class="mr-2"
-      href="https://facebook.com/conan.io"
+      href="https://www.facebook.com/sharer/sharer.php?u={{ 'https://blog.conan.io/' | url_encode }}{{ post.url | url_encode }}"
     >
       <img
         class="lazy"
